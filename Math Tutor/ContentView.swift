@@ -20,6 +20,8 @@ struct ContentView: View {
     @State private var textFieldIsDisabled = false
     @State private var guessButtonIsDisabled = false
     @State private var hiddenButton = true
+    @State private var sign = "+"
+    private let signs = ["+", "-", "x", "÷"]
     private let emojis = ["🍕", "🍎", "🍏", "🐵", "👽", "🧠", "🧜🏽‍♀️", "🧙🏿‍♂️", "🥷", "🐶", "🐹", "🐣", "🦄", "🐝", "🦉", "🦋", "🦖", "🐙", "🦞", "🐟", "🦔", "🐲", "🌻", "🌍", "🌈", "🍔", "🌮", "🍦", "🍩", "🍪", "🧸", "🐼", "🍰", "🍭", "🌭"]
     
     var body: some View {
@@ -28,7 +30,7 @@ struct ContentView: View {
                 .font(.system(size: 80))
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.center)
-            Text("+")
+            Text(sign)
                 .font(.largeTitle)
             Text(secondNumberEmojis)
                 .font(.system(size: 80))
@@ -37,12 +39,12 @@ struct ContentView: View {
             
             Spacer()
             
-            Text("\(firstNumber) + \(secondNumber) =")
+            Text("\(firstNumber) \(sign) \(secondNumber) =")
                 .font(.largeTitle)
             
             TextField("", text: $answer)
                 .textFieldStyle(.roundedBorder)
-                .font(.largeTitle)
+                .font(.title)
                 .multilineTextAlignment(.center)
                 .frame(width: 60)
                 .overlay {
@@ -55,7 +57,7 @@ struct ContentView: View {
             
             Button("Guess") {
                 textFieldIsFocused = false
-                let result = firstNumber + secondNumber
+                let result = getAnswer(firstNumber: firstNumber, secondNumber: secondNumber, sign: sign)
                 if let answerValue = Int(answer) {
                     if answerValue == result {
                         playSound(soundName: "correct")
@@ -88,6 +90,7 @@ struct ContentView: View {
                     guessButtonIsDisabled = false
                     textFieldIsDisabled = false
                     message = ""
+                    sign = signs.randomElement()!
                     generateNewEquation()
                 }
             }
@@ -98,11 +101,34 @@ struct ContentView: View {
         }
     }
     func generateNewEquation() {
-        firstNumber = Int.random(in: 1...10)
-        secondNumber = Int.random(in: 1...10)
+        firstNumber = Int.random(in: 1...20)
+        if sign == "-" {
+            repeat {
+                secondNumber = Int.random(in: 1...15)
+            } while firstNumber < secondNumber
+        } else if sign == "÷" {
+            repeat {
+                secondNumber = Int.random(in: 1...5)
+            } while firstNumber % secondNumber != 0
+        } else {
+            secondNumber = Int.random(in: 1...15)
+        }
         firstNumberEmojis = String(repeating: emojis.randomElement()!, count: firstNumber)
         secondNumberEmojis = String(repeating: emojis.randomElement()!, count: secondNumber)
     }
+    
+    func getAnswer(firstNumber: Int, secondNumber: Int, sign: String) -> Int {
+        if sign == "+" {
+            return firstNumber + secondNumber
+        } else if sign == "-" {
+            return firstNumber - secondNumber
+        } else if sign == "÷" {
+            return firstNumber / secondNumber
+        } else {
+            return firstNumber * secondNumber
+        }
+    }
+    
     func playSound(soundName: String) {
         if audioPlayer != nil {
             audioPlayer.stop()

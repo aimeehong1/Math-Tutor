@@ -35,16 +35,6 @@
 			path = "Math Tutor";
 			sourceTree = "<group>";
 		};
-		90C37E442CA5D4B200A61553 /* Math TutorTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Math TutorTests";
-			sourceTree = "<group>";
-		};
-		90C37E4E2CA5D4B200A61553 /* Math TutorUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Math TutorUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				90C37E332CA5D4A900A61553 /* Math Tutor */,
-				90C37E442CA5D4B200A61553 /* Math TutorTests */,
-				90C37E4E2CA5D4B200A61553 /* Math TutorUITests */,
 				90C37E322CA5D4A900A61553 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +118,6 @@
 			dependencies = (
 				90C37E432CA5D4B200A61553 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				90C37E442CA5D4B200A61553 /* Math TutorTests */,
-			);
 			name = "Math TutorTests";
 			packageProductDependencies = (
 			);
@@ -152,9 +137,6 @@
 			);
 			dependencies = (
 				90C37E4D2CA5D4B200A61553 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				90C37E4E2CA5D4B200A61553 /* Math TutorUITests */,
 			);
 			name = "Math TutorUITests";
 			packageProductDependencies = (
