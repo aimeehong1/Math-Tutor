@@ -1,4 +1,5 @@
-A basic addition app that utilizes emojis and sounds to make it more comprehensible to young children
+A basic math tutor app that utilizes emojis and sounds to make addition, subtraction, multiplication, and division more comprehensible to younger children
 
-https://github.com/user-attachments/assets/ae7b9888-ff61-4932-96e6-b14b1e401c6e
+
+https://github.com/user-attachments/assets/af1797f1-5c1d-47b8-833e-a1040c026532
 
